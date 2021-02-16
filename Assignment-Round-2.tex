@@ -1,0 +1,361 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+Parik -
+
+I'd like you to take the German Credit Data example that you shared, and
+write two pieces of R code: one that will train a model (of your
+choosing) and save the trained model,
+
+and another that has a prediction function which takes a record (or a
+test csv file) as input, loads the trained model, and outputs
+corresponding predictions.
+
+What I'm looking for is best coding practices (appropriate commenting,
+variable naming conventions, etc.).
+
+Instead of emailing me those directly, I'd like you to upload them to a
+Github repo that I can access. You are encouraged to add any explanation
+in a README.md.
+
+Load the dataset first.
+
+Downloaded from:
+\url{https://online.stat.psu.edu/stat508/resource/analysis/gcd}
+
+We give it the generic name ``data'', as the originally loaded data set.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"german\_credit.csv"}\NormalTok{, }
+                \AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }
+                \AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Get the names of the variables in the set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Creditability"                     "Account.Balance"                  
+##  [3] "Duration.of.Credit..month."        "Payment.Status.of.Previous.Credit"
+##  [5] "Purpose"                           "Credit.Amount"                    
+##  [7] "Value.Savings.Stocks"              "Length.of.current.employment"     
+##  [9] "Instalment.per.cent"               "Sex...Marital.Status"             
+## [11] "Guarantors"                        "Duration.in.Current.address"      
+## [13] "Most.valuable.available.asset"     "Age..years."                      
+## [15] "Concurrent.Credits"                "Type.of.apartment"                
+## [17] "No.of.Credits.at.this.Bank"        "Occupation"                       
+## [19] "No.of.dependents"                  "Telephone"                        
+## [21] "Foreign.Worker"
+\end{verbatim}
+
+So, perform analysis on this dataset we must use logistic regression.
+
+We also have two separate CSV files given by the PSU website where we
+got the original dataset from. One is a ``Train'' set and the other is a
+``Test'' set. Both hail from the same original set, but they were
+preprocessed by the same host.
+
+Load them both:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train\_data }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Training50.csv"}\NormalTok{, }
+                \AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }
+                \AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+
+\NormalTok{test\_data }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Test50.csv"}\NormalTok{, }
+                \AttributeTok{header =} \ConstantTok{TRUE}\NormalTok{, }
+                \AttributeTok{sep =} \StringTok{","}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We want the response variable, or the outcome variable to be
+``Creditability''.
+
+This is a binary variable that decides whether or not the loan will be
+defaulted.
+
+It can be influenced by a variety of factors - to name a few, they could
+include the applicant's duration of credit, credit amount, number of
+dependents and age.
+
+Here, we see from examining the CSV file, that the variables that have
+the most obvious meaning are:
+
+Duration of credit Credit Amount Length of current employment
+Installment percent Age Number of dependents
+
+By looking at the values, we see that they are ordinal as well as
+continuous, not categorical, meaning that as we only want to pick
+variables that we expect to obviously explain whether or not an
+applicant will have their loan rejected.
+
+First we want to check which predictors are significant in influencing
+the response, or the chance of defaulting.
+
+We will perform a logistic regression model on the response vs.~the
+predictor variables selected, as mentioned above.
+
+If the p-values of each of the estimated coefficients of the predictor
+variables are less than a recommended cutoff of 0.05, we will deem them
+as insignificant.
+
+Create the model for the full dataset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Full\_model performs logistic regression on the full dataset, not on every variable in the set!}
+\NormalTok{full\_model }\OtherTok{=} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{                  Creditability }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Duration.of.Credit..month.}
+                            \SpecialCharTok{+}\NormalTok{ Credit.Amount}
+                            \SpecialCharTok{+}\NormalTok{ Length.of.current.employment}
+                            \SpecialCharTok{+}\NormalTok{ Instalment.per.cent}
+                            \SpecialCharTok{+}\NormalTok{ Age..years.}
+                            \SpecialCharTok{+}\NormalTok{ No.of.dependents, }
+                  \AttributeTok{data =}\NormalTok{ train\_data, }
+                  \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{                 )}
+\end{Highlighting}
+\end{Shaded}
+
+Now check the p-values using the summary, if they are less than 0.05:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which}\NormalTok{(}\FunctionTok{summary}\NormalTok{(full\_model)}\SpecialCharTok{$}\NormalTok{coefficients[,}\DecValTok{4}\NormalTok{] }\SpecialCharTok{\textless{}} \FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  (Intercept)   Duration.of.Credit..month. 
+##                            1                            2 
+##                Credit.Amount Length.of.current.employment 
+##                            3                            4 
+##          Instalment.per.cent 
+##                            5
+\end{verbatim}
+
+It turns out that the duration of credit month, credit amount, length of
+current employment and installment percent are significant. Another two
+variables were not. So we include those in our training model.
+
+First train the model.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train\_model }\OtherTok{=} \FunctionTok{glm}\NormalTok{(}
+\NormalTok{                  Creditability }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Duration.of.Credit..month.}
+                                \SpecialCharTok{+}\NormalTok{ Credit.Amount}
+                                \SpecialCharTok{+}\NormalTok{ Length.of.current.employment}
+                                \SpecialCharTok{+}\NormalTok{ Instalment.per.cent}
+                                \SpecialCharTok{+}\NormalTok{ Age..years.}
+                                \SpecialCharTok{+}\NormalTok{ No.of.dependents, }
+                  \AttributeTok{data =}\NormalTok{ train\_data, }
+                  \AttributeTok{family =}\NormalTok{ binomial}
+\NormalTok{                 )}
+\end{Highlighting}
+\end{Shaded}
+
+We want to check the accuracy or performance of the trained model when
+predicting train values and test values. Since the response is binary
+and we used logistic regression, we have to compare the binary values of
+our predicted responses to the actual response values from the
+respective data sets.
+
+But the output predicted values are not in terms of 0 or 1 - they are
+continuous. We must classify them by using the standard cutoff as 0.5
+for if the value is less than 0.5 and 1 if it is more than 0.5.
+
+Now we will predict Creditability values using train data, or the train
+dataset we loaded earlier, to predict train response values based on the
+train model.
+
+We will call the predicted response values ``y\_train''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Predict the values using train model on train data:}
+\NormalTok{y }\OtherTok{=} \FunctionTok{predict}\NormalTok{(train\_model, train\_data, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+\CommentTok{\#Convert/classify those responses in terms of 0 and 1.}
+\CommentTok{\#These are the corresponding predictions.}
+\NormalTok{y\_train }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(y }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we will test the model using test data, or the test dataset we
+loaded earlier, to predict test response values based on the train
+model.
+
+We will call the predicted response values ``y\_test''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Predict the values using train model on test data:}
+\NormalTok{y }\OtherTok{=} \FunctionTok{predict}\NormalTok{(train\_model, test\_data, }\AttributeTok{type =} \StringTok{"response"}\NormalTok{)}
+
+\CommentTok{\#Convert/classify those responses in terms of 0 and 1.}
+\CommentTok{\#These are the corresponding predictions.}
+\NormalTok{y\_test }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(y }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+There are 500 values for the corresponding predictions for each of the
+train and test data. Rather than output every single value, our goal
+should be to generate them for both train and test data and check how
+those values match with the actual response values from the dataset - in
+other words, the performance of the model.
+
+To compare the performance of the train model on the test and train
+data, and how equal the train and test response predicted values,
+
+we count how many predicted test/train values out of the total number of
+dataset observations
+
+First for the train responses:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(y\_train }\SpecialCharTok{==}\NormalTok{ train\_data}\SpecialCharTok{$}\NormalTok{Creditability)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.734
+\end{verbatim}
+
+Now for the test responses:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(y\_test }\SpecialCharTok{==}\NormalTok{ test\_data}\SpecialCharTok{$}\NormalTok{Creditability)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.682
+\end{verbatim}
+
+As we see here, the model performs reasonably well on the train data,
+outputting the correct response values more than 70\% of the time.
+However, on the test data, it only gets it right a little less than 70\%
+of the time. While this is not abnormal, we should recognize that there
+are indeed underlying potential improvements that could have been made
+when fitting the model, especially when deciding what predictor
+variables to use to predict the response. Other than that, this accuracy
+rate is reasonably good.
+
+\end{document}

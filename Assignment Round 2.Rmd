@@ -1,0 +1,160 @@
+---
+output:
+  html_document: default
+  word_document: default
+  pdf_document: default
+---
+
+
+German Credit Data Set Analysis
+
+Load the dataset first.
+
+Downloaded from:
+https://online.stat.psu.edu/stat508/resource/analysis/gcd
+
+We give it the generic name "data", as the originally loaded data set.
+
+```{r}
+data = read.csv("german_credit.csv", 
+                header = TRUE, 
+                sep = ",")
+```
+
+Get the names of the variables in the set:
+
+```{r}
+names(data)
+```
+So, perform analysis on this dataset we must use logistic regression.
+
+We also have two separate CSV files given by the PSU website where we got the original dataset from.
+One is a "Train" set and the other is a "Test" set.
+Both hail from the same original set, but they were preprocessed by the same host.
+
+Load them both:
+
+```{r}
+train_data = read.csv("Training50.csv", 
+                header = TRUE, 
+                sep = ",")
+
+test_data = read.csv("Test50.csv", 
+                header = TRUE, 
+                sep = ",")
+```
+
+
+We want the response variable, or the outcome variable to be "Creditability". 
+
+This is a binary variable that decides whether or not the loan will be defaulted.
+
+It can be influenced by a variety of factors - to name a few, they could include the applicant's duration of credit, credit amount, number of dependents and age. 
+
+Here, we see from examining the CSV file, that the variables that have the most obvious meaning are:
+
+Duration of credit,
+Credit Amount,
+Length of current employment,
+Installment percent,
+Age,
+Number of dependents.
+
+By looking at the values, we see that they are ordinal as well as continuous, not categorical, 
+meaning that as we only want to pick variables that we expect to obviously explain whether or not an applicant will have their loan rejected.
+
+First we want to check which predictors are significant in influencing the response, or the chance of defaulting.
+
+We will perform a logistic regression model on the response vs. the predictor variables selected, as mentioned above.
+
+If the p-values of each of the estimated coefficients of the predictor variables are less than a recommended cutoff of 0.05, we will deem them as insignificant.
+
+Create the model for the full dataset:
+
+```{r}
+#Full_model performs logistic regression on the full dataset, not on every variable in the set!
+full_model = glm(
+                  Creditability ~ Duration.of.Credit..month.
+                            + Credit.Amount
+                            + Length.of.current.employment
+                            + Instalment.per.cent
+                            + Age..years.
+                            + No.of.dependents, 
+                  data = train_data, 
+                  family = binomial
+                 )
+```
+
+Now check the p-values using the summary, if they are less than 0.05:
+
+```{r}
+which(summary(full_model)$coefficients[,4] < 0.05)
+```
+It turns out that the duration of credit month, credit amount, length of current employment and installment percent are significant. Another two variables were not.
+So we include those in our training model.
+
+First train the model.
+
+```{r}
+train_model = glm(
+                  Creditability ~ Duration.of.Credit..month.
+                                + Credit.Amount
+                                + Length.of.current.employment
+                                + Instalment.per.cent
+                                + Age..years.
+                                + No.of.dependents, 
+                  data = train_data, 
+                  family = binomial
+                 )
+```
+
+We want to check the accuracy or performance of the trained model when predicting train values and test values.
+Since the response is binary and we used logistic regression, we have to compare the binary values of our predicted responses to the actual response values from the respective data sets.
+
+But the output predicted values are not in terms of 0 or 1 - they are continuous. We must classify them by using the standard cutoff as 0.5 for if the value is less than 0.5 and 1 if it is more than 0.5.
+
+Now we will predict Creditability values using train data, or the train dataset we loaded earlier, to predict train response values based on the train model.
+
+We will call the predicted response values "y_train".
+
+```{r}
+#Predict the values using train model on train data:
+y = predict(train_model, train_data, type = "response")
+
+#Convert/classify those responses in terms of 0 and 1.
+#These are the corresponding predictions.
+y_train = ifelse(y > 0.5, 1, 0)
+```
+
+Now we will test the model using test data, or the test dataset we loaded earlier, to predict test response values based on the train model.
+
+We will call the predicted response values "y_test".
+
+```{r}
+#Predict the values using train model on test data:
+y = predict(train_model, test_data, type = "response")
+
+#Convert/classify those responses in terms of 0 and 1.
+#These are the corresponding predictions.
+y_test = ifelse(y > 0.5, 1, 0)
+```
+
+There are 500 values for the corresponding predictions for each of the train and test data.
+Rather than output every single value, our goal should be to generate them for both train and test data and check how those values match with the actual response values from the dataset - in other words, the performance of the model.
+
+To compare the performance of the train model on the test and train data, and how equal the train and test response predicted values,
+
+we count how many predicted test/train values out of the total number of dataset observations are equal to the corresponding values of the actual test/train values of the original dataset, or the proportions, which equals the accuracy rate.
+
+First for the train responses:
+
+```{r}
+mean(y_train == train_data$Creditability)
+```
+Now for the test responses:
+
+```{r}
+mean(y_test == test_data$Creditability)
+```
+
+As we see here, the model performs reasonably well on the train data, outputting the correct response values more than 70% of the time. However, on the test data, it only gets it right a little less than 70% of the time. While this is not abnormal, we should recognize that there are indeed underlying potential improvements that could have been made when fitting the model, especially when deciding what predictor variables to use to predict the response. Other than that, this accuracy rate is reasonably good.
